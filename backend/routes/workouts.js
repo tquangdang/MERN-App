@@ -1,5 +1,7 @@
 // Import Express library
 const express = require('express')
+
+const Workout = require('../models/workoutModel')
 // Creates an instance of an Express router. Routers are used to group related routes together.
 const router = express.Router()
 
@@ -15,7 +17,15 @@ router.get('/:id', (req, res) => {
 })
 
 // POST a new workout
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    const {title, load, reps} = req.body    // Extract data
+
+    try {
+        const workout = await Workout.create({title, load, reps})
+        res.status(200).json(workout)
+    } catch (error) {
+
+    }
     res.json({mssg: "POST a new workout"})
 })
 
