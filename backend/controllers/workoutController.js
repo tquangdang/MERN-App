@@ -13,9 +13,9 @@ const getWorkouts = async(req, res) => {
 const getWorkout = async(req, res) => {
     const { id } = req.params       // Grab the id property from the request
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: "No such workout"})
-    }
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({error: "No such workout"})
+        }
     const workout = await Workout.findById(id)
     if (!workout) {
         return res.status(404).json({error: "No such workout"})     // We have to return here since if not, it will carry on and run the rest of the code
@@ -40,13 +40,50 @@ const createWorkout = async(req, res) => {
 
 
 // delete a workout
+const deleteWorkout = async(req, res) => {
+    // Grab the id from the route
+    const { id } = req.params
+    // Make sure that it is a valid id
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "No such workout"})
+    }
 
+    // Try to delete that workout
+    const workout = await Workout.findOneAndDelete({_id: id})
+    // Do we have this workout?
+    if (!workout) {
+        return res.status(404).json({error: "No such workout"})
+    }
+    // If able to delete the workout
+    res.status(200).json(workout)
+}
 
 
 // update a workout
+const updateWorkout = async (req, res) => {
+    // Grab the id from the route
+    const { id } = req.params
+    // Make sure that it is a valid id
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "No such workout"})
+    }
+    // Try to update it
+    const workout = await Workout.findOneAndUpdate({_id: id}, {
+        ...req.body
+    })
+    // Do we have this workout?
+    if (!workout) {
+        return res.status(404).json({error: "No such workout"})
+    }
+    // If able to delete the workout
+    res.status(200).json(workout)
+}
+
 
 module.exports = {
     getWorkouts,
     getWorkout,
-    createWorkout
+    createWorkout,
+    deleteWorkout,
+    updateWorkout,
 }
