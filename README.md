@@ -1,4 +1,4 @@
-# MERN Stack Project 1 - *Workout tracker*
+# MERN Stack Project - *Workout tracker*
 
 Author: **Quang Dang**
 
@@ -8,9 +8,9 @@ This web app: **can store, and track user's workout data, such as exercise name,
 
 The following **required** functionality is completed:
 
-- [ ] **Users can save their workout data to MongoDB database**
-- [ ] **Users can look up their workout data**
-- [ ] **Users can delete their workout data**
+- [X] **Users can save their workout data to MongoDB database**
+- [X] **Users can look up their workout data**
+- [X] **Users can delete their workout data**
 ## Video Walkthrough
 
 
