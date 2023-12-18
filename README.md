@@ -11,6 +11,7 @@ The following **required** functionality is completed:
 - [X] **Users can save their workout data to MongoDB database**
 - [X] **Users can look up their workout data**
 - [X] **Users can delete their workout data**
+- [X] **Users can add their workout data through a form**
 ## Video Walkthrough
 
 
